@@ -4,12 +4,16 @@ let lcOnly= "abcdefghijklmnopqrstuvwxyz";
 let ucOnly= "ABCDEFGHIJKLMNOPQRSTUVWYZY";
 let symOnly= '!"#$%&()*+,-./:;<=>?@[]^_`{|}~';
 let genpassword = "";
+let useLC = false;
+let useUC = false;
+let useNum = false;
+let useSym = false;
 
 console.log(symOnly);
 //setting up prompts for user to answer
 let pwLength = prompt ("How long do you want your password to be?, Enter between 8 & 128 characters"); 
 let pwLC = prompt ("Do you want to include lowercase letters?");
-let pwUP = prompt ("Do you want to include uppercase letters?");
+let pwUC = prompt ("Do you want to include uppercase letters?");
 let pwNum = prompt ("Do you want to include numeric characters?");
 let pwSym = prompt ("Do you want to include special characters?");
 
@@ -18,11 +22,28 @@ let numPwLength = parseInt(pwLength);
 
 //setting answers to prompts to all lower case
 pwLC = pwLC.toLowerCase();
-pwUP = pwUP.toLowerCase();
+pwUC = pwUC.toLowerCase();
 pwNum = pwNum.toLowerCase();
 pwSym = pwSym.toLowerCase();
 
 //setting the answers to the prompt to boolean values
+if (pwLC === "y" || pwLC === "yes") {
+  useLC = true;
+};
+
+if (pwUC === "y" || pwUC === "yes") {
+  useUC = true;
+};
+
+if (pwNum === "y" || pwNum === "yes") {
+  useNum = true;
+};
+
+if (pwSym === "y" || pwSym === "yes") {
+  useSym = true;
+};
+
+
 
 
 if (numPwLength >7 && numPwLength <129) {
