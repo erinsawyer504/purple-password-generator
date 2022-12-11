@@ -3,7 +3,7 @@ var nums = "0123456789";
 var lower= "abcdefghijklmnopqrstuvwxyz";
 var upper= "ABCDEFGHIJKLMNOPQRSTUVWYZY";
 var symbols= '!"#$%&()*+,-./:;<=>?@[]^_`{|}~';
-var genPassword = "";
+var password = "";
 var useLC = false;
 var useUC = false;
 var useNum = false;
@@ -19,11 +19,6 @@ var askSym = prompt ("Do you want to include special characters?");
 
 //turns the pwLength from a string to a number
 var numPwLength = parseInt(pwLength);
-
-//Ends function if user presses cancel
-/*if (numPwLength < 7 || numPwLength > 129 ) {
-  alert ('Please enter a number between 8 and 128');
-};*/
 
 //setting answers from prompts to all lower case
 askLC = askLC.toLowerCase();
@@ -48,54 +43,43 @@ if (askSym === "y" || askSym === "yes") {
   useSym = true;
 };
 
-//setting the random functions into an object
-var randomFunctionGen = {
-  lowerf: genRandomLC,
-  upperf: genRandomUC,
-  numberf: genRandomNumber,
-  symbolf: genRandomSymbol,
+//setting up the password pool to include the different criteria based on if the user selected yes
+var pwPool = '';
+    
+if (useLC == true){
+    pwPool += lower;
 }
+    
+if (useUC == true){
+    pwPool += upper;
+}
+    
+if (useNum == true){
+    pwPool += nums;
+}
+    
+if(useSym == true){
+    pwPool += symbols;
+ }
 
-//Setting up the generate Password Function
-function generatePassword(useLC, useUC, useNum, useSym, numPwLength) {
-  var typesCount = useLC + useUC + useNum + useSym;
-  var typesArr = [{useLC}, {useUC}, {useNum}, {useSym}]. filter
-  (item => Object.values(item)[0]);
-
- for (var i = 0; i < numPwLength; i += typesCount) {
-    typesArr.forEach(type => {
-        var randomFunctionName = Object.keys(type)[0];
-        genPassword += randomFunctionGen[randomFunctionName]();
-    });
-  }
-
+function randomChars(numPwLength){
+    return Math.floor(Math.random()*(numPwLength)+1);
+}
+    
+function generatePassword() {
+    for (var i=0; i < numPwLength; i+= 1) {
+      password += pwPool[randomChars(pwPool.length)]
+    }
+    return password;
 
 }
-
-//Setting up functions to generate random numbers/letters/symbols
-function genRandomLC () {
-  return lower[Math.floor(Math.random() * lower.length)];
-}
-
-function genRandomUC () {
-  return upper[Math.floor(Math.random() * upper.length)];
-}
-
-function genRandomNumber() {
-  return nums[Math.floor(Math.random() * nums.length)];
-}
-
-function genRandomSymbol() {
-  return symbols[Math.floor(Math.random() * symbols.length)];
-}
-
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword(useLC, useUC, useNum, useSym, numPwLength);
+  var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
