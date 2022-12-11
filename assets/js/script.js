@@ -1,31 +1,31 @@
 // Assignment code here
-let nums = "0123456789";
-let lower= "abcdefghijklmnopqrstuvwxyz";
-let upper= "ABCDEFGHIJKLMNOPQRSTUVWYZY";
-let symbols= '!"#$%&()*+,-./:;<=>?@[]^_`{|}~';
-let genpassword = "";
-let useLC = false;
-let useUC = false;
-let useNum = false;
-let useSym = false;
+var nums = "0123456789";
+var lower= "abcdefghijklmnopqrstuvwxyz";
+var upper= "ABCDEFGHIJKLMNOPQRSTUVWYZY";
+var symbols= '!"#$%&()*+,-./:;<=>?@[]^_`{|}~';
+var genpassword = "";
+var useLC = false;
+var useUC = false;
+var useNum = false;
+var useSym = false;
 
 
 //setting up prompts for user to answer
-let pwLength = window.prompt ("How long do you want your password to be?, Enter between 8 & 128 characters"); 
-let askLC = prompt ("Do you want to include lowercase letters?");
-let askUC = prompt ("Do you want to include uppercase letters?");
-let askNum = prompt ("Do you want to include numeric characters?");
-let askSym = prompt ("Do you want to include special characters?");
-
-//Ends function if user presses cancel
-/*if (pwLength === null) {
-  return;
-};*/
+var pwLength = window.prompt ("How long do you want your password to be?, Enter between 8 & 128 characters"); 
+var askLC = prompt ("Do you want to include lowercase letters?");
+var askUC = prompt ("Do you want to include uppercase letters?");
+var askNum = prompt ("Do you want to include numeric characters?");
+var askSym = prompt ("Do you want to include special characters?");
 
 //turns the pwLength from a string to a number
-let numPwLength = parseInt(pwLength);
+var numPwLength = parseInt(pwLength);
 
-//setting answers to prompts to all lower case
+//Ends function if user presses cancel
+/*if (numPwLength < 7 || numPwLength > 129 ) {
+  alert ('Please enter a number between 8 and 128');
+};*/
+
+//setting answers from prompts to all lower case
 askLC = askLC.toLowerCase();
 askUC = askUC.toLowerCase();
 askNum = askNum.toLowerCase();
@@ -48,7 +48,39 @@ if (askSym === "y" || askSym === "yes") {
   useSym = true;
 };
 
-//Setting up functions
+//setting the random functions into an object
+var randomFunctionGen = {
+  lowerf: genRandomLC,
+  upperf: genRandomUC,
+  numberf: genRandomNumber,
+  symbolf: genRandomSymbol,
+}
+
+//Setting up the generate Password Function
+function generatePassword(lower, upper, nums, symbols, numPwLength) {
+  var typesCount = useLC + useUC + useNum + useSym;
+  var typesArr = [{useLC}, {useUC}, {useNum}, {useSym}]. filter
+  (item => Object.values(item)[0]);
+  console.log(typesArr);
+}
+
+ /* for (var i = 0; i < numPwLength; i += typesCount) {
+    typesArr.forEach(type => {
+        var randomFunctionName = Object.keys(type)[0];
+        console.log('funcName: ', randomFunctionName);
+
+        genPassword += randomFunctionGen[randomFunctionName]();
+    });
+
+
+  }*/
+
+
+  /*var typesArr = [{useLC}, {useUC}, {useNum}, {useSym}]. filter
+  (item => Object.values(item)[0]);
+  console.log(typesArr);*/
+
+//Setting up functions to generate random numbers/letters/symbols
 function genRandomLC () {
   return lower[Math.floor(Math.random() * lower.length)];
 }
@@ -64,11 +96,6 @@ function genRandomNumber() {
 function genRandomSymbol() {
   return symbols[Math.floor(Math.random() * symbols.length)];
 }
-console.log(genRandomLC());
-console.log(genRandomUC());
-console.log(genRandomNumber());
-console.log(genRandomSymbol());
-
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
