@@ -3,7 +3,7 @@ var nums = "0123456789";
 var lower= "abcdefghijklmnopqrstuvwxyz";
 var upper= "ABCDEFGHIJKLMNOPQRSTUVWYZY";
 var symbols= '!"#$%&()*+,-./:;<=>?@[]^_`{|}~';
-var genpassword = "";
+var genPassword = "";
 var useLC = false;
 var useUC = false;
 var useNum = false;
@@ -57,28 +57,20 @@ var randomFunctionGen = {
 }
 
 //Setting up the generate Password Function
-function generatePassword(lower, upper, nums, symbols, numPwLength) {
+function generatePassword(useLC, useUC, useNum, useSym, numPwLength) {
   var typesCount = useLC + useUC + useNum + useSym;
   var typesArr = [{useLC}, {useUC}, {useNum}, {useSym}]. filter
   (item => Object.values(item)[0]);
-  console.log(typesArr);
-}
 
- /* for (var i = 0; i < numPwLength; i += typesCount) {
+ for (var i = 0; i < numPwLength; i += typesCount) {
     typesArr.forEach(type => {
         var randomFunctionName = Object.keys(type)[0];
-        console.log('funcName: ', randomFunctionName);
-
         genPassword += randomFunctionGen[randomFunctionName]();
     });
+  }
 
 
-  }*/
-
-
-  /*var typesArr = [{useLC}, {useUC}, {useNum}, {useSym}]. filter
-  (item => Object.values(item)[0]);
-  console.log(typesArr);*/
+}
 
 //Setting up functions to generate random numbers/letters/symbols
 function genRandomLC () {
@@ -97,16 +89,16 @@ function genRandomSymbol() {
   return symbols[Math.floor(Math.random() * symbols.length)];
 }
 
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var password = generatePassword(useLC, useUC, useNum, useSym, numPwLength);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
