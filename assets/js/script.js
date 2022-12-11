@@ -8,17 +8,18 @@ var useLC = false;
 var useUC = false;
 var useNum = false;
 var useSym = false;
-
+var numPwLength = 0;
 
 //setting up prompts for user to answer
-var pwLength = window.prompt ("How long do you want your password to be?, Enter between 8 & 128 characters"); 
+while (numPwLength < 8 || numPwLength >128 ) {
+  pwLengthRaw = prompt ("How long do you want your password to be?, Enter between 8 & 128 characters");
+  numPwLength = +pwLengthRaw;
+}
+
 var askLC = prompt ("Do you want to include lowercase letters?");
 var askUC = prompt ("Do you want to include uppercase letters?");
 var askNum = prompt ("Do you want to include numeric characters?");
 var askSym = prompt ("Do you want to include special characters?");
-
-//turns the pwLength from a string to a number
-var numPwLength = parseInt(pwLength);
 
 //setting answers from prompts to all lower case
 askLC = askLC.toLowerCase();
