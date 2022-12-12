@@ -69,7 +69,7 @@ function randomChars(numPwLength){
     
 function generatePassword() {
     for (var i=0; i < numPwLength; i+= 1) {
-      password += pwPool[randomChars(pwPool.length)]
+      password += pwPool[randomChars(pwPool.length -1)]
     }
     return password;
 
