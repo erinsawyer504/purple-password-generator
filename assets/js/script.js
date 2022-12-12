@@ -13,7 +13,7 @@ var numPwLength = 0;
 //setting up prompts for user to answer
 while (numPwLength < 8 || numPwLength >128 ) {
   pwLengthRaw = prompt ("How long do you want your password to be?, Enter between 8 & 128 characters");
-  numPwLength = +pwLengthRaw;
+  numPwLength = +pwLengthRaw;  //parseInt(pwLength)  //console.log(typeof pwlength)
 }
 
 var askLC = prompt ("Do you want to include lowercase letters?");
@@ -64,7 +64,7 @@ if(useSym == true){
  }
 
 function randomChars(numPwLength){
-    return Math.floor(Math.random()*(numPwLength)+1);
+    return Math.floor(Math.random()*(numPwLength) + 1);
 }
     
 function generatePassword() {
