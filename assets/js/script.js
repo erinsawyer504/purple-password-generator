@@ -3,7 +3,6 @@ var nums = "0123456789";
 var lower= "abcdefghijklmnopqrstuvwxyz";
 var upper= "ABCDEFGHIJKLMNOPQRSTUVWYZY";
 var symbols= '!"#$%&()*+,-./:;<=>?@[]^_`{|}~';
-//var password = "";
 var useLC = false;
 var useUC = false;
 var useNum = false;
