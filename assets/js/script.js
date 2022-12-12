@@ -3,7 +3,7 @@ var nums = "0123456789";
 var lower= "abcdefghijklmnopqrstuvwxyz";
 var upper= "ABCDEFGHIJKLMNOPQRSTUVWYZY";
 var symbols= '!"#$%&()*+,-./:;<=>?@[]^_`{|}~';
-var password = "";
+//var password = "";
 var useLC = false;
 var useUC = false;
 var useNum = false;
@@ -68,6 +68,7 @@ function randomChars(numPwLength){
 }
     
 function generatePassword() {
+    var password = "";
     for (var i=0; i < numPwLength; i+= 1) {
       password += pwPool[randomChars(pwPool.length -1)]
     }
